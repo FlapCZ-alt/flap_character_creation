@@ -1,0 +1,817 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800");
+html, body {
+  height: 100%;
+}
+
+body {
+  align-items: center;
+  display: flex;
+  font-family: "Open Sans", sans;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1800px;
+  text-align: center;
+  margin: 0 20px;
+}
+
+h1 {
+  color: #2C3E50;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+h3 {
+  color: #3DC1A8;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+.cards {
+  background: #fff;
+  border-radius: 15px 0px 15px 15px;
+  box-shadow: 0px 10px 20px 20px rgba(0, 0, 0, 0.17);
+  display: inline-block;
+  padding: 15px;
+  perspective: 1800px;
+  text-align: left;
+  transform-origin: 50% 50%;
+  transform-style: preserve-3d;
+  transform: rotateX(11deg) rotateY(16.5deg);
+  position: absolute;
+  right: 5%;
+  min-width: 420px;
+  min-height: 525px;
+  bottom: 30%;
+}
+
+
+/* main card content right below  */
+
+.int-content {
+  display: inline-block;
+  padding: 0px 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-width: 380px;
+  max-height: 525px;
+}
+
+.page {
+  padding: 0px 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-width: 380px;
+  max-width: 380px;
+  max-height: 525px;
+}
+
+.box-sliders {
+  display: inline-block;
+  text-align: left;
+  width: 100%;
+  padding-bottom: 5px;
+}
+
+
+.card {
+  border-radius: 15px;
+  box-shadow: 5px 5px 20px -5px rgba(0, 0, 0, 0.6);
+  height: 250px;
+  overflow: hidden;
+  perspective: 1200px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 200ms ease-out;
+  width: 175px;
+  text-align: center;
+  display: inline-block;
+}
+.card:not(:last-child) {
+  margin-right: 25px;
+}
+
+.card__img {
+  position: relative;
+  height: 100%;
+}
+
+.card__bg {
+  bottom: -50px;
+  left: -50px;
+  position: absolute;
+  right: -50px;
+  top: -50px;
+  transform-origin: 50% 50%;
+  transform: translateZ(-50px);
+  z-index: 0;
+}
+
+.card__one .card__img {
+  top: 14px;
+  right: 0px;
+  height: 100%;
+}
+.card__one .card__bg {
+  background: url("https://cdn.wallpapersafari.com/61/83/LiC1fo.jpg") center/cover no-repeat;
+}
+.card__two .card__img {
+  top: 14px;
+  right: 45px;
+  height: 100%;
+}
+.card__two .card__bg {
+  background: url("https://i.pinimg.com/originals/e6/1b/e5/e61be57f01119569906f59b71ada449b.jpg") center/cover no-repeat;
+}
+.card__text {
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.55) 100%);
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  height: 70px;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+
+.card__title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 0 10px;
+  margin-bottom: 3px;
+}
+
+
+.tab {
+    position: absolute;
+    top: 0%;
+    right: -10.0%;
+    border: 0px solid #ccc;
+    background-color: #f1f1f1;
+    width: 10%;
+    height: 475;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: 5px 5px 20px -15px rgba(0, 0, 0, 0.6);
+  }
+
+.tab button {
+    display: block;
+    background-color: transparent;
+    color: #2C3E50;
+    padding: 5px 0px;
+    width: 100%;
+    font-size: 1.25rem;
+    border: none;
+    outline: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tab button.active {
+    background-color: #ccc;
+    color: #3DC1A8;
+}
+
+
+#tab-dna {
+  border-top-right-radius: 15px;
+}
+
+#tab-id {
+  border-bottom-right-radius: 15px;
+}
+
+.tablinks {
+  fill: #2C3E50 !important;
+}
+
+
+/* foward and backwards arrows for parents */
+
+#foward {
+  z-index: 100;
+  color: white;
+  font-size: 1.35rem;
+  position: absolute;
+  top: 45%;
+  right: 10%;
+}
+
+#foward:hover, #back:hover {
+  color: #3DC1A8;
+  cursor: pointer;
+}
+
+#back {
+  z-index: 100;
+  color: white;
+  font-size: 1.35rem;
+  position: absolute;
+  top: 45%;
+  left: 10%;
+}
+
+
+/* slider styling  */
+
+.range-slider {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.range-slider__range {
+  -webkit-appearance: none;
+  width: calc(100% - (65px));
+  height: 10px;
+  border-radius: 5px;
+  background: #d7dcdf;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+.range-slider__range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #2c3e50;
+  cursor: pointer;
+  transition: background 0.15s ease-in-out;
+}
+.range-slider__range::-webkit-slider-thumb:hover {
+  background: #1abc9c;
+}
+.range-slider__range:active::-webkit-slider-thumb {
+  background: #1abc9c;
+}
+.range-slider__range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 0;
+  border-radius: 50%;
+  background: #2c3e50;
+  cursor: pointer;
+  transition: background 0.15s ease-in-out;
+}
+.range-slider__range::-moz-range-thumb:hover {
+  background: #1abc9c;
+}
+.range-slider__range:active::-moz-range-thumb {
+  background: #1abc9c;
+}
+.range-slider__range:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px #fff, 0 0 0 6px #1abc9c;
+}
+
+.range-slider__value {
+  display: inline-block;
+  position: sticky;
+  font-size: 15px;
+  font-weight: 800;
+  width: 30px;
+  color: #fff;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 3px;
+  background: #2c3e50;
+  padding: 5px 10px;
+  margin-left: 10px;
+  margin-top: -6px;
+}
+.range-slider__value:after {
+  position: absolute;
+  top: 8px;
+  left: -7px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-right: 7px solid #2c3e50;
+  border-bottom: 7px solid transparent;
+  content: "";
+}
+
+::-moz-range-track {
+  background: #d7dcdf;
+  border: 0;
+}
+
+input::-moz-focus-inner,
+input::-moz-focus-outer {
+  border: 0;
+}
+
+
+#sex-slider h3, #father-slider h3, #mother-slider h3, .range-slider h3  {
+  text-align: left;
+  margin-bottom: 5px;
+  margin-top: 12px;
+}
+
+/* character rotator  */
+
+.c-rotator {
+  right: 13.5%;
+  bottom: 20%;
+  position: absolute;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 5px 5px;
+  box-shadow: 0px 10px 20px 20px rgba(0, 0, 0, 0.17);
+}
+
+.r-l-buttons {
+  display: inline-flex;
+}
+
+.r-l-buttons span:not(:last-child) {
+  margin-right: 20px;
+  margin-top: -1px;
+  margin-bottom: 0px;
+}
+
+
+.c-rotator span {
+  font-size: 2rem;
+  color: #2C3E50;
+}
+
+.c-rotator span:hover {
+  font-size: 2rem;
+  color: #1abc9c;
+  cursor: pointer;
+}
+
+.c-rotator h3 {
+  font-size: 0.6rem;
+  margin: 0;
+  padding: 0px 5px;
+}
+
+
+/* scrollbar styling  */
+
+::-webkit-scrollbar {
+  width: 15px;              
+}
+::-webkit-scrollbar-track {
+  background: #ccc;
+  border-radius: 17px;        
+}
+::-webkit-scrollbar-thumb {
+  background-color: #f1f1f1;    
+  border-radius: 25px;       
+  border: 0.25rem solid #ccc;
+}
+
+/* 
+rows and column styles */
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-between;
+  width: 100%;
+}
+
+
+.column {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  flex-basis: 100%;
+  flex: 1;
+  background-color: transparent;
+  font-size: 1.25rem;
+  margin: 3px;
+}
+
+
+/* radio button styles  */
+
+.color-container {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 183px;
+}
+
+.color-container-small {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 150px;
+}
+
+.color-container-large {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.box-colors h1 {
+  margin-bottom: 10px;
+}
+
+.custom-radios div {
+  display: inline-block;
+}
+.custom-radios input[type=radio] {
+  display: none;
+}
+.custom-radios input[type=radio] + label span {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  line-height: 23px;
+}
+.custom-radios input[type=radio] + label span i {
+  opacity: 0;
+  transition: all 0.5s ease;
+  color: white;
+  font-size: 1rem;
+}
+
+/* RADIO COLORS */
+.custom-radios input[value=color-1] + label span {
+  background-color: #171A1B;
+}
+.custom-radios input[value=color-2] + label span {
+  background-color: #222325;
+}
+.custom-radios input[value=color-3] + label span {
+  background-color: #282726;
+}
+.custom-radios input[value=color-4] + label span {
+  background-color: #2D2018;
+}
+.custom-radios input[value=color-5] + label span {
+  background-color: #3E2A1D;
+}
+.custom-radios input[value=color-6] + label span {
+  background-color: #4D3121;
+}
+.custom-radios input[value=color-7] + label span {
+  background-color: #5B402E;
+}
+.custom-radios input[value=color-8] + label span {
+  background-color: #594434;
+}
+.custom-radios input[value=color-9] + label span {
+  background-color: #624F3E;
+}
+.custom-radios input[value=color-10] + label span {
+  background-color: #6C5843;
+}
+.custom-radios input[value=color-11] + label span {
+  background-color: #826D53;
+}
+.custom-radios input[value=color-12] + label span {
+  background-color: #8D7D5B;
+}
+.custom-radios input[value=color-13] + label span {
+  background-color: #958461;
+}
+.custom-radios input[value=color-14] + label span {
+  background-color: #A08856;
+}
+.custom-radios input[value=color-15] + label span {
+  background-color: #B69E6B;
+}
+.custom-radios input[value=color-16] + label span {
+  background-color: #B8A57C;
+}
+.custom-radios input[value=color-17] + label span {
+  background-color: #86674D;
+}
+.custom-radios input[value=color-18] + label span {
+  background-color: #6C412F;
+}
+.custom-radios input[value=color-19] + label span {
+  background-color: #54231C;
+}
+.custom-radios input[value=color-20] + label span {
+  background-color: #510F09;
+}
+.custom-radios input[value=color-21] + label span {
+  background-color: #530C0A;
+}
+.custom-radios input[value=color-22] + label span {
+  background-color: #651010;
+}
+.custom-radios input[value=color-23] + label span {
+  background-color: #832516;
+}
+.custom-radios input[value=color-24] + label span {
+  background-color: #953E21;
+}
+.custom-radios input[value=color-25] + label span {
+  background-color: #82422A;
+}
+.custom-radios input[value=color-26] + label span {
+  background-color: #8D4125;
+}
+.custom-radios input[value=color-27] + label span {
+  background-color: #505050;
+}
+.custom-radios input[value=color-28] + label span {
+  background-color: #696969;
+}
+.custom-radios input[value=color-29] + label span {
+  background-color: #8C8C8C;
+}
+.custom-radios input[value=color-30] + label span {
+  background-color: #A2A2A2;
+}
+.custom-radios input[value=color-31] + label span {
+  background-color: #3A2E46;
+}
+.custom-radios input[value=color-32] + label span {
+  background-color: #4C3357;
+}
+.custom-radios input[value=color-33] + label span {
+  background-color: #5E305E;
+}
+.custom-radios input[value=color-34] + label span {
+  background-color: #BD5DB5;
+}
+.custom-radios input[value=color-35] + label span {
+  background-color: #BB3D72;
+}
+.custom-radios input[value=color-36] + label span {
+  background-color: #C27A97;
+}
+.custom-radios input[value=color-37] + label span {
+  background-color: #037679;
+}
+.custom-radios input[value=color-38] + label span {
+  background-color: #034B68;
+}
+.custom-radios input[value=color-39] + label span {
+  background-color: #012E59;
+}
+.custom-radios input[value=color-40] + label span {
+  background-color: #328054;
+}
+.custom-radios input[value=color-41] + label span {
+  background-color: #1B624E;
+}
+.custom-radios input[value=color-42] + label span {
+  background-color: #114941;
+}
+.custom-radios input[value=color-43] + label span {
+  background-color: #919929;
+}
+.custom-radios input[value=color-44] + label span {
+  background-color: #598711;
+}
+.custom-radios input[value=color-45] + label span {
+  background-color: #377E14;
+}
+.custom-radios input[value=color-46] + label span {
+  background-color: #B09348;
+}
+.custom-radios input[value=color-47] + label span {
+  background-color: #B98E0B;
+}
+.custom-radios input[value=color-48] + label span {
+  background-color: #B7740C;
+}
+.custom-radios input[value=color-49] + label span {
+  background-color: #BB6929;
+}
+.custom-radios input[value=color-50] + label span {
+  background-color: #C36345;
+}
+.custom-radios input[value=color-51] + label span {
+  background-color: #AD6A45;
+}
+.custom-radios input[value=color-52] + label span {
+  background-color: #A44431;
+}
+.custom-radios input[value=color-53] + label span {
+  background-color: #A0251B;
+}
+.custom-radios input[value=color-54] + label span {
+  background-color: #850605;
+}
+.custom-radios input[value=color-55] + label span {
+  background-color: #690302;
+}
+.custom-radios input[value=color-56] + label span {
+  background-color: #171211;
+}
+.custom-radios input[value=color-57] + label span {
+  background-color: #201813;
+}
+.custom-radios input[value=color-58] + label span {
+  background-color: #251915;
+}
+.custom-radios input[value=color-59] + label span {
+  background-color: #291F18;
+}
+.custom-radios input[value=color-60] + label span {
+  background-color: #251A12;
+}
+.custom-radios input[value=color-61] + label span {
+  background-color: #1B1411;
+}
+.custom-radios input[value=color-62] + label span {
+  background-color: #010101;
+}
+.custom-radios input[value=color-63] + label span {
+  background-color: #57534F;
+}
+.custom-radios input[value=color-64] + label span {
+  background-color: #795F40;
+}
+.custom-radios input[type=radio]:checked + label span i {
+  opacity: 1;
+}
+.custom-radios input[type=radio]:checked + label span {
+  border: #dbdbdb solid 3px;
+}
+
+/* final form css styling  */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Rock+Salt|Shadows+Into+Light|Cedarville+Cursive');
+
+.id-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  padding-bottom: 25px;
+}
+
+
+.login-box {
+  position: relative;
+  margin-top: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.login-box h3 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #3DC1A8;
+  text-align: left;
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 5px 0;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #2C3E50;
+  margin-bottom: 25px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  background: transparent;
+  text-transform: uppercase;
+}
+.login-box .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #2C3E50;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.login-box form a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #03e9f4;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px
+}
+
+.login-box a:hover {
+  background: #03e9f4;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.sex-radios div {
+  display: inline-block;
+}
+.sex-radios input[type=radio] {
+  display: none;
+}
+.sex-radios input[type=radio] + label span {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  line-height: 23px;
+}
+.sex-radios input[type=radio] + label span i {
+  opacity: 0;
+  transition: all 0.5s ease;
+  color: white;
+  font-size: 1rem;
+}
+
+.male i {
+  font-size: 1.5rem;
+  margin-left: 5px;
+}
+
+.female i {
+  font-size: 1.5rem;
+  margin-left: 5px;
+  color: pink;
+}
+
+.female h3 {
+  color: pink;
+}
+
+.sex-radios input[value=female] + label span {
+  background-color: pink;
+}
+
+.sex-radios input[value=male] + label span {
+  background-color: #3DC1A8;
+}
+
+.sex-radios input[type=radio]:checked + label span {
+  border: #2C3E50 solid 3px;
+}
+
+#create-button {
+  text-align: center;
+  padding: 10px;
+  background-color: #2C3E50;
+  color: white;
+  font-family: "Open Sans", sans;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 800;
+  border: none;
+  border-radius: 5px;
+}
+
+#create-button:hover {
+  background-color: #3DC1A8;
+  color: #2C3E50;
+  cursor: pointer;
+}
+

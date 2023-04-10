@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.9.55/css/materialdesignicons.min.css" integrity="sha512-vIgFb4o1CL8iMGoIF7cYiEVFrel13k/BkTGvs0hGfVnlbV6XjAA0M0oEHdWqGdAVRTDID3vIZPOHmKdrMAUChA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Character Creator Zoot & Flap</title>
+</head>
+<body style="display: none;">
+
+    <div class="cards">
+      <!-- sidebar and buttons -->
+        <div class="tab">
+            <button id="tab-dna" onclick="changeCam('full')" class="tablinks active" data-index="dna-makeup"><svg style="width:24px; height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M4,2H6V4C6,5.44 6.68,6.61 7.88,7.78C8.74,8.61 9.89,9.41 11.09,10.2L9.26,11.39C8.27,10.72 7.31,10 6.5,9.21C5.07,7.82 4,6.1 4,4V2M18,2H20V4C20,6.1 18.93,7.82 17.5,9.21C16.09,10.59 14.29,11.73 12.54,12.84C10.79,13.96 9.09,15.05 7.88,16.22C6.68,17.39 6,18.56 6,20V22H4V20C4,17.9 5.07,16.18 6.5,14.79C7.91,13.41 9.71,12.27 11.46,11.16C13.21,10.04 14.91,8.95 16.12,7.78C17.32,6.61 18,5.44 18,4V2M14.74,12.61C15.73,13.28 16.69,14 17.5,14.79C18.93,16.18 20,17.9 20,20V22H18V20C18,18.56 17.32,17.39 16.12,16.22C15.26,15.39 14.11,14.59 12.91,13.8L14.74,12.61M7,3H17V4L16.94,4.5H7.06L7,4V3M7.68,6H16.32C16.08,6.34 15.8,6.69 15.42,7.06L14.91,7.5H9.07L8.58,7.06C8.2,6.69 7.92,6.34 7.68,6M9.09,16.5H14.93L15.42,16.94C15.8,17.31 16.08,17.66 16.32,18H7.68C7.92,17.66 8.2,17.31 8.58,16.94L9.09,16.5M7.06,19.5H16.94L17,20V21H7V20L7.06,19.5Z" />
+              </svg>
+            </button>
+            <button id="tab-face" onclick="changeCam('face')" class="tablinks" data-index="face-features"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9,11.75A1.25,1.25 0 0,0 7.75,13A1.25,1.25 0 0,0 9,14.25A1.25,1.25 0 0,0 10.25,13A1.25,1.25 0 0,0 9,11.75M15,11.75A1.25,1.25 0 0,0 13.75,13A1.25,1.25 0 0,0 15,14.25A1.25,1.25 0 0,0 16.25,13A1.25,1.25 0 0,0 15,11.75M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,11.71 4,11.42 4.05,11.14C6.41,10.09 8.28,8.16 9.26,5.77C11.07,8.33 14.05,10 17.42,10C18.2,10 18.95,9.91 19.67,9.74C19.88,10.45 20,11.21 20,12C20,16.41 16.41,20 12,20Z" />
+              </svg>
+            </button>
+            <button id="tab-eye" onclick="changeCam('eyes')" class="tablinks" data-index="eye"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z" />
+              </svg>
+            </button>
+            <button id="tab-scissors" onclick="changeCam('hair')" class="tablinks" data-index="hair"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M19,3L13,9L15,11L22,4V3M12,12.5A0.5,0.5 0 0,1 11.5,12A0.5,0.5 0 0,1 12,11.5A0.5,0.5 0 0,1 12.5,12A0.5,0.5 0 0,1 12,12.5M6,20A2,2 0 0,1 4,18C4,16.89 4.9,16 6,16A2,2 0 0,1 8,18C8,19.11 7.1,20 6,20M6,8A2,2 0 0,1 4,6C4,4.89 4.9,4 6,4A2,2 0 0,1 8,6C8,7.11 7.1,8 6,8M9.64,7.64C9.87,7.14 10,6.59 10,6A4,4 0 0,0 6,2A4,4 0 0,0 2,6A4,4 0 0,0 6,10C6.59,10 7.14,9.87 7.64,9.64L10,12L7.64,14.36C7.14,14.13 6.59,14 6,14A4,4 0 0,0 2,18A4,4 0 0,0 6,22A4,4 0 0,0 10,18C10,17.41 9.87,16.86 9.64,16.36L12,14L19,21H22V20L9.64,7.64Z" />
+              </svg>
+            </button>
+            <button id="tab-wink" onclick="changeCam('eyes')" class="tablinks" data-index="eyebrow"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M10,9.5C10,10.3 9.3,11 8.5,11C7.7,11 7,10.3 7,9.5C7,8.7 7.7,8 8.5,8C9.3,8 10,8.7 10,9.5M12,17.23C10.25,17.23 8.71,16.5 7.81,15.42L9.23,14C9.68,14.72 10.75,15.23 12,15.23C13.25,15.23 14.32,14.72 14.77,14L16.19,15.42C15.29,16.5 13.75,17.23 12,17.23M17,10H13V9H17V10Z" />
+              </svg>
+            </button>
+            <button id="tab-mustache" onclick="changeCam('beard')" class="tablinks" data-index="beard"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M21 12C19 12 18 9 15 9S12 11 12 11 12 9 9 9 5 12 3 12C2 12 1 11 1 11S2 16 6 16C11 16 12 13 12 13S13 16 18 16C22 16 23 11 23 11S22 12 21 12Z" />
+              </svg>
+            </button>
+            <button id="tab-accout-magnify" onclick="changeCam('eyes')" class="tablinks" data-index="nose-shape"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M15.5,12C18,12 20,14 20,16.5C20,17.38 19.75,18.21 19.31,18.9L22.39,22L21,23.39L17.88,20.32C17.19,20.75 16.37,21 15.5,21C13,21 11,19 11,16.5C11,14 13,12 15.5,12M15.5,14A2.5,2.5 0 0,0 13,16.5A2.5,2.5 0 0,0 15.5,19A2.5,2.5 0 0,0 18,16.5A2.5,2.5 0 0,0 15.5,14M10,4A4,4 0 0,1 14,8C14,8.91 13.69,9.75 13.18,10.43C12.32,10.75 11.55,11.26 10.91,11.9L10,12A4,4 0 0,1 6,8A4,4 0 0,1 10,4M2,20V18C2,15.88 5.31,14.14 9.5,14C9.18,14.78 9,15.62 9,16.5C9,17.79 9.38,19 10,20H2Z" />
+              </svg>
+            </button>
+            <button id="tab-face-shimmer" onclick="changeCam('eyes')" class="tablinks" data-index="facial-blemishes"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M18.41 3.41L16 4.5L18.41 5.59L19.5 8L20.6 5.59L23 4.5L20.6 3.41L19.5 1M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12C22 10.53 21.67 9.13 21.1 7.87L19.86 10.59C19.94 11.05 20 11.5 20 12C20 16.43 16.43 20 12 20C7.57 20 4 16.43 4 12C4 11.96 4 11.91 4 11.87A10 10 0 0 0 9.74 6.31A10 10 0 0 0 17.5 10A10 10 0 0 0 18.83 9.91L17.35 6.65L12.6 4.5L16.13 2.9C14.87 2.33 13.47 2 12 2M9 11.75A1.25 1.25 0 0 0 7.75 13A1.25 1.25 0 0 0 9 14.25A1.25 1.25 0 0 0 10.25 13A1.25 1.25 0 0 0 9 11.75M15 11.75A1.25 1.25 0 0 0 13.75 13A1.25 1.25 0 0 0 15 14.25A1.25 1.25 0 0 0 16.25 13A1.25 1.25 0 0 0 15 11.75Z" />
+              </svg>
+            </button>
+            <button id="tab-magnify" onclick="changeCam('chest')" class="tablinks" data-index="body-blemishes"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9,2A7,7 0 0,1 16,9C16,10.57 15.5,12 14.61,13.19L15.41,14H16L22,20L20,22L14,16V15.41L13.19,14.61C12,15.5 10.57,16 9,16A7,7 0 0,1 2,9A7,7 0 0,1 9,2M8,5V8H5V10H8V13H10V10H13V8H10V5H8Z" />
+              </svg>
+            </button>
+            <button id="tab-lipstick" onclick="changeCam('eyes')" class="tablinks" data-index="makeup"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9 23C8.45 23 8 22.55 8 22V13C8 12.45 8.45 12 9 12H15C15.55 12 16 12.45 16 13V22C16 22.55 15.55 23 15 23H9M10 11C9.45 11 9 10.55 9 10V5.25C9 5.25 11 3 11.75 1C12.83 1.67 13.92 2.33 14.46 3.83C15 5.33 15 7.67 15 10C15 10.55 14.55 11 14 11H10Z" />
+              </svg>
+            </button>
+            <button id="tab-id" onclick="changeCam('full')" class="tablinks" data-index="id-card"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M22,4H14V7H10V4H2A2,2 0 0,0 0,6V20A2,2 0 0,0 2,22H22A2,2 0 0,0 24,20V6A2,2 0 0,0 22,4M8,9A2,2 0 0,1 10,11A2,2 0 0,1 8,13A2,2 0 0,1 6,11A2,2 0 0,1 8,9M12,17H4V16C4,14.67 6.67,14 8,14C9.33,14 12,14.67 12,16V17M20,18H14V16H20V18M20,14H14V12H20V14M20,10H14V8H20V10M13,6H11V2H13V6Z" />
+              </svg>
+            </button>
+        </div>
+
+
+
+          <!-- [START OF FIRSTPAGE DNA MAKEUP]  -->
+          <section class="page" data-index="dna-makeup">
+
+            <div class="box-one">
+              <h1>character creation</h1>
+              <h3>Choose your parents</h3>
+            </div>
+
+            <div class="box-cards">
+              <div class="card card__one">
+                <div class="card__bg"></div>
+                <img class="card__img" src="models/Nico_Bellic_Parent_Portrait_GTAV.webp" />
+              </div>
+              <div class="card card__two">
+                <div class="card__bg"></div>
+                <img class="card__img" src="models/Misty_Parent_Portrait_GTAV.webp" />
+              </div>
+            </div>
+
+            <div class="box-sliders">
+                <!-- choose sex -->
+                <div id="sex-slider" class="range-slider">
+                  <h3>Choose your gender</h3>
+                  <input class="range-slider__range" type="range" value="0" min="0" max="1" id="sex" onmousemove="changeCharacterAppereance('sex', 'sex')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <!-- father slider -->
+                <div id="father-slider" class="range-slider">
+                  <h3>Choose a resemblance to your father</h3>
+                  <input class="range-slider__range" type="range" value="10" min="0" max="20" id="father" onmousemove="changeCharacterAppereance('father', 'dad')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <!-- mother slider -->
+                <div id="mother-slider" class="range-slider">
+                  <h3>Choose a resemblance to your mother</h3>
+                  <input class="range-slider__range" type="range" value="31" min="21" max="41" id="mother" onmousemove="changeCharacterAppereance('mother', 'mom')">
+                  <span class="range-slider__value">0</span>
+                </div>
+              </div>
+
+            </section>
+            <!-- [END OF FIRST PAGE DNA MAKEUP] -->
+
+
+
+
+
+
+
+            <!-- [START OF SECOND PAGE FACIAL FEATURES] -->
+            <section class="page" style="display: none;" data-index="face-features">
+              <h1>face</h1>
+
+              <div class="box-sliders">
+
+                <div id="feature-one" class="range-slider">
+                  <h3>skin tone</h3>
+                  <input class="range-slider__range" type="range" value="50" min="0" max="100" id="faceOne" onmousemove="changeCharacterAppereance('faceOne', 'skin_md_weight')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="feature-two" class="range-slider">
+                  <h3>face width</h3>
+                  <input class="range-slider__range" type="range" value="50" min="0" max="100" id="faceTwo" onmousemove="changeCharacterAppereance('faceTwo', 'face_md_weight')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="feature-three" class="range-slider">
+                  <h3>height of the cheekbones</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="faceThree" onmousemove="changeCharacterAppereance('faceThree', 'cheeks_1')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="feature-four" class="range-slider">
+                  <h3>width of cheekbones</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="faceFour" onmousemove="changeCharacterAppereance('faceFour', 'cheeks_2')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="feature-five" class="range-slider">
+                  <h3>width of cheeks</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="faceFive" onmousemove="changeCharacterAppereance('faceFive', 'cheeks_3')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="feature-six" class="range-slider">
+                  <h3>fullness of the lips</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="faceSix" onmousemove="changeCharacterAppereance('faceSix', 'lip_thickness')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="feature-seven" class="range-slider">
+                  <h3>width of the jawbone</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="faceSeven" onmousemove="changeCharacterAppereance('faceSeven', 'jaw_1')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="feature-eight" class="range-slider">
+                  <h3>length of the jawbone</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="faceEight" onmousemove="changeCharacterAppereance('faceEight', 'jaw_2')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="feature-nine" class="range-slider">
+                  <h3>chin height</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="faceNine" onmousemove="changeCharacterAppereance('faceNine', 'chin_1')">
+                  <span class="range-slider__value">0</span>
+                </div>
+                
+                <div id="feature-ten" class="range-slider">
+                  <h3>chin length</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="faceTen" onmousemove="changeCharacterAppereance('faceTen', 'chin_2')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="feature-eleven" class="range-slider">
+                  <h3>chin width</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="faceEleven" onmousemove="changeCharacterAppereance('faceEleven', 'chin_3')">
+                  <span class="range-slider__value">0</span>
+                </div>
+                
+                <div id="feature-twelve" class="range-slider">
+                  <h3>chin hole size</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="faceTwelve" onmousemove="changeCharacterAppereance('faceTwelve', 'chin_4')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="feature-thirteen" class="range-slider">
+                  <h3>neck thickness</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="faceThirteen" onmousemove="changeCharacterAppereance('faceThirteen', 'neck_thickness')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="feature-fifteen" class="range-slider">
+                  <h3>Wrinkles</h3>
+                  <input class="range-slider__range" type="range" value="7" min="0" max="14" id="faceFifteen" onmousemove="changeCharacterAppereance('faceFifteen', 'age_1')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="feature-sixteen" class="range-slider">
+                  <h3>thickness of wrinkles</h3>
+                  <input class="range-slider__range" type="range" value="5" min="0" max="10" id="faceSixteen" onmousemove="changeCharacterAppereance('faceSixteen', 'age_2')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+              </div>
+            </section>
+            <!-- [END OF SECOND PAGE FACIAL FEATURERS] -->
+
+
+
+
+
+          <!-- [START OF THIRD PAGE EYE SHAPE] -->
+            <section class="page" style="display: none;" data-index="eye">
+            
+              <h1>eyes</h1>
+
+              <div class="box-sliders">
+
+                <div id="eye-shape-one" class="range-slider">
+                  <h3>squinting eyes</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="eyeOne" onmousemove="changeCharacterAppereance('eyeOne', 'eye_squint')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="eye-shape-two" class="range-slider">
+                  <h3>eye colour</h3>
+                  <input class="range-slider__range" type="range" value="15" min="0" max="30" id="eyeTwo" onmousemove="changeCharacterAppereance('eyeTwo', 'eye_color')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+              </div>
+
+              </section>
+
+
+
+
+
+            <!-- [START OF FOURTH PAGE HAIR STYLE] -->
+            <section class="page" style="display: none;" data-index="hair">
+            
+              <h1>Hair</h1>
+
+              <div class="box-sliders">
+
+                <div id="hair-style-one" class="range-slider">
+                  <h3>Hair type</h3>
+                  <input class="range-slider__range" type="range" value="50" min="0" max="74" id="hairOne" onmousemove="changeCharacterAppereance('hairOne', 'hair_1')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="hair-style-two" class="range-slider">
+                  <h3>hair colour</h3>
+                  <input class="range-slider__range" type="range" value="31" min="0" max="62" id="hairTwo" onmousemove="changeCharacterAppereance('hairTwo', 'hair_color_1')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="hair-style-three" class="range-slider">
+                  <h3>highlighting hair colour</h3>
+                  <input class="range-slider__range" type="range" value="31" min="0" max="62" id="hairThree" onmousemove="changeCharacterAppereance('hairThree', 'hair_color_2')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+              </div>
+
+              </section>
+
+              <!-- [END OF FOURTH PAGE] -->
+
+
+
+
+           <!-- [START OF FITH PAGE EYEBROW STYLE] -->
+            <section class="page" style="display: none;" data-index="eyebrow">
+            
+              <h1>Eyebrows</h1>
+
+              <div class="box-sliders">
+
+                <div id="eyebrow-shape" class="range-slider">
+                  <h3>type of eyebrows</h3>
+                  <input class="range-slider__range" type="range" value="17" min="0" max="34" id="eyebrowOne" onmousemove="changeCharacterAppereance('eyebrowOne', 'eyebrows_1')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="eyebrow-opacity" class="range-slider">
+                  <h3>eyebrow size</h3>
+                  <input class="range-slider__range" type="range" value="5" min="0" max="10" id="eyebrowTwo" onmousemove="changeCharacterAppereance('eyebrowTwo', 'eyebrows_2')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="eyebrow-opacity-two" class="range-slider">
+                  <h3>eyebrow colour</h3>
+                  <input class="range-slider__range" type="range" value="30" min="0" max="60" id="eyebrowThree" onmousemove="changeCharacterAppereance('eyebrowThree', 'eyebrows_3')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="eyebrow-opacity-three" class="range-slider">
+                  <h3>eyebrow height</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="eyebrowFour" onmousemove="changeCharacterAppereance('eyebrowFour', 'eyebrows_5')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="eyebrow-opacity-four" class="range-slider">
+                  <h3>depth of eyebrows</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="eyebrowFive" onmousemove="changeCharacterAppereance('eyebrowFive', 'eyebrows_6')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+              </div>
+
+              </section>
+
+              <!-- [END OF FITH EYEBROW PAGE] -->
+
+
+
+                          <!-- [START OF SIXTH PAGE BEARD STYLE] -->
+            <section class="page" style="display: none;" data-index="beard">
+            
+              <h1>beard</h1>
+
+              <div class="box-sliders">
+
+                <div id="beard-style" class="range-slider">
+                  <h3>type of beard</h3>
+                  <input class="range-slider__range" type="range" value="14" min="0" max="28" id="beardOne" onmousemove="changeCharacterAppereance('beardOne', 'beard_1')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="beard-opacity" class="range-slider">
+                  <h3>beard size</h3>
+                  <input class="range-slider__range" type="range" value="5" min="0" max="10" id="beardTwo" onmousemove="changeCharacterAppereance('beardTwo', 'beard_2')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="beard-opacity-two" class="range-slider">
+                  <h3>beard colour</h3>
+                  <input class="range-slider__range" type="range" value="32" min="0" max="64" id="beardThree" onmousemove="changeCharacterAppereance('beardThree', 'beard_3')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+              </div>
+
+              </section>
+
+
+            <!-- [START OF EIGTH PAGE NOSE SHAPE] -->
+            <section class="page" style="display: none;" data-index="nose-shape">
+              <h1>Nose</h1>
+
+              <div class="box-sliders">
+
+                <div id="shape-one" class="range-slider">
+                  <h3>width of the nose</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="noseOne" onmousemove="changeCharacterAppereance('noseOne', 'nose_1')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="shape-two" class="range-slider">
+                  <h3>length of nose</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="noseTwo" onmousemove="changeCharacterAppereance('noseTwo', 'nose_2')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="shape-three" class="range-slider">
+                  <h3>height of the nose</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="noseThree" onmousemove="changeCharacterAppereance('noseThree', 'nose_3')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="shape-four" class="range-slider">
+                  <h3>deepening of the nose</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="noseFour" onmousemove="changeCharacterAppereance('noseFour', 'nose_4')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="shape-five" class="range-slider">
+                  <h3>slope of the nose</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="noseFive" onmousemove="changeCharacterAppereance('noseFive', 'nose_5')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="shape-six" class="range-slider">
+                  <h3>curvature of the nose</h3>
+                  <input class="range-slider__range" type="range" value="0" min="-10" max="10" id="noseSix" onmousemove="changeCharacterAppereance('noseSix', 'nose_6')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+              </div>
+            </section>
+            <!-- [END OF EIGHTH PAGE NOSE SHAPE] -->
+
+
+
+            <!-- [START OF NINTH PAGE FACIAL BLEMISHES] -->
+            <section class="page" style="display: none;" data-index="facial-blemishes">
+              <h1>facial defects</h1>
+
+              <div class="box-sliders">
+
+                <div id="blemish-one" class="range-slider">
+                  <h3>freckles</h3>
+                  <input class="range-slider__range" type="range" value="9" min="0" max="17" id="blemishesOne" onmousemove="changeCharacterAppereance('blemishesOne', 'moles_1')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="blemish-one-opacity" class="range-slider">
+                  <h3>thickness of freckles</h3>
+                  <input class="range-slider__range" type="range" value="5" min="0" max="10" id="blemishesTwo" onmousemove="changeCharacterAppereance('blemishesTwo', 'moles_2')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="blemish-two" class="range-slider">
+                  <h3>skin</h3>
+                  <input class="range-slider__range" type="range" value="5" min="0" max="10" id="blemishesThree" onmousemove="changeCharacterAppereance('blemishesThree', 'complexion_1')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="blemish-two-opacity" class="range-slider">
+                  <h3>blushing</h3>
+                  <input class="range-slider__range" type="range" value="5" min="0" max="10" id="blemishesFour" onmousemove="changeCharacterAppereance('blemishesFour', 'blush_1')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="blemish-three" class="range-slider">
+                  <h3>blush thickness</h3>
+                  <input class="range-slider__range" type="range" value="5" min="0" max="10" id="blemishesFive" onmousemove="changeCharacterAppereance('blemishesFive', 'blush_2')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="blemish-three-opacity" class="range-slider">
+                  <h3>colour of blushing</h3>
+                  <input class="range-slider__range" type="range" value="5" min="0" max="40" id="blemishesSix" onmousemove="changeCharacterAppereance('blemishesSix', 'blush_3')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="blemish-four" class="range-slider">
+                  <h3>facial defects</h3>
+                  <input class="range-slider__range" type="range" value="5" min="0" max="10" id="blemishesSeven" onmousemove="changeCharacterAppereance('blemishesSeven', 'blemishes_1')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="blemish-four-opacity" class="range-slider">
+                  <h3>size of facial blemishes</h3>
+                  <input class="range-slider__range" type="range" value="5" min="0" max="10" id="blemishesEight" onmousemove="changeCharacterAppereance('blemishesEight', 'blemishes_2')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+              </div>
+            </section>
+            <!-- [END OF NINTH PAGE FACIAL BLEMISHES] -->
+              
+
+
+            <!-- [START OF TENTH PAGE BODY BLEMISHES] -->
+            <section class="page" style="display: none;" data-index="body-blemishes">
+              <h1>body defects</h1>
+
+              <div class="box-sliders">
+
+                <div id="body-blemish-one" class="range-slider">
+                  <h3>chest hair</h3>
+                  <input class="range-slider__range" type="range" value="5" min="0" max="10" id="bodyBlemishOne" onmousemove="changeCharacterAppereance('bodyBlemishOne', 'chest_1')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="body-blemish-one-opacity" class="range-slider">
+                  <h3>thickness of chest hair</h3>
+                  <input class="range-slider__range" type="range" value="5" min="0" max="10" id="bodyBlemishTwo" onmousemove="changeCharacterAppereance('bodyBlemishTwo', 'chest_2')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="body-blemish-two" class="range-slider">
+                  <h3>chest hair colour</h3>
+                  <input class="range-slider__range" type="range" value="32" min="0" max="64" id="bodyBlemishThree" onmousemove="changeCharacterAppereance('bodyBlemishThree', 'chest_3')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="body-blemish-two-opacity" class="range-slider">
+                  <h3>body defects</h3>
+                  <input class="range-slider__range" type="range" value="5" min="-1" max="10" id="bodyBlemishFour" onmousemove="changeCharacterAppereance('bodyBlemishFour', 'bodyb_1')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="body-blemish-three-opacity" class="range-slider">
+                  <h3>thickness of body defects</h3>
+                  <input class="range-slider__range" type="range" value="5" min="0" max="10" id="bodyBlemishFive" onmousemove="changeCharacterAppereance('bodyBlemishFive', 'bodyb_2')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+              </div>
+            </section>
+            <!-- [END OF TENTH PAGE BODY BLEMISHES] -->
+
+
+
+
+            <!-- [START OF ELEVENTH PAGE MAKEUP] -->
+            <section class="page" style="display: none;" data-index="makeup">
+            
+              <h1>makeup</h1>
+
+              <div class="box-sliders">
+
+                <div id="makeup-one" class="range-slider">
+                  <h3>make-up type</h3>
+                  <input class="range-slider__range" type="range" value="17" min="0" max="34" id="makeupOne" onmousemove="changeCharacterAppereance('makeupOne', 'makeup_1')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="makeup-one-opacity" class="range-slider">
+                  <h3>make-up thickness</h3>
+                  <input class="range-slider__range" type="range" value="5" min="0" max="10" id="makeupTwo" onmousemove="changeCharacterAppereance('makeupTwo', 'makeup_2')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="makeup-two-opacity" class="range-slider">
+                  <h3>make-up colour</h3>
+                  <input class="range-slider__range" type="range" value="32" min="0" max="64" id="makeupThree" onmousemove="changeCharacterAppereance('makeupThree', 'makeup_3')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="makeup-two-two" class="range-slider">
+                  <h3>lipstick type</h3>
+                  <input class="range-slider__range" type="range" value="5" min="0" max="10" id="makeupFour" onmousemove="changeCharacterAppereance('makeupFour', 'lipstick_1')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="makeup-two-two-opacity" class="range-slider">
+                  <h3>lipstick thickness</h3>
+                  <input class="range-slider__range" type="range" value="5" min="0" max="10" id="makeupFive" onmousemove="changeCharacterAppereance('makeupFive', 'lipstick_2')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+                <div id="makeup-two-two-opacity-two" class="range-slider">
+                  <h3>lipstick colour</h3>
+                  <input class="range-slider__range" type="range" value="32" min="0" max="64" id="makeupSix" onmousemove="changeCharacterAppereance('makeupSix', 'lipstick_3')">
+                  <span class="range-slider__value">0</span>
+                </div>
+
+              </div>
+
+              </section>
+
+              <!-- [END OF ELEVENTH PAGE MAKEUP] -->
+
+
+            <!-- [START OF twelfth PAGE id card] -->
+            <section class="page" style="display: none;" data-index="id-card">
+              <h1>Identity creation</h1>
+
+              <div class="id-container">
+                <div class="login-box">
+                  <form>
+                    <div class="user-box">
+                      <input type="first-name" class="first_name" name="" required>
+                      <label>First name</label>
+                    </div>
+                    <div class="user-box">
+                      <input type="last-name" class="last_name" name="" required>
+                      <label>Last name</label>
+                    </div>
+                    <div class="user-box">
+                      <input type="date" name="date" required id="date">
+                      <label>Date of birth</label>
+                    </div>
+                      <div class="sex-radios">
+                        <input type="radio" onclick="setSex('M')" id="sex-male" name="sex-radio" value="male">
+                        <label for="sex-male">
+                          <span>
+                          </span>
+                          <div class="male">
+                          <h3><i class="mdi mdi-human-male"></i> Male</h3>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="sex-radios">
+                        <input type="radio" onclick="setSex('F')" id="sex-female" name="sex-radio" value="female">
+                        <label for="sex-female">
+                          <span>
+                          </span>
+                          <div class="female">
+                          <h3><i class="mdi mdi-human-female"></i> Female</h3>
+                          </div>
+                        </label>
+                      </div>
+                      <button id="create-button">finish creating</button>
+                  </form>
+                </div>        
+              </div>
+              
+            </section>
+            <!-- [END OF twelfth PAGE id card] -->
+
+              
+
+      </div>
+
+      <div class="c-rotator">
+        <div>
+          <h3>Character rotation</h3>
+        </div>
+        <div class="r-l-buttons">
+          <span class = "flap_rotation_left" id="rotate-l"><i class="mdi mdi-arrow-left-bold-circle"></i></span>
+          <span class = "flap_rotation_right" id="rotate-r"><i class="mdi mdi-arrow-right-bold-circle"></i></span>
+        </div>
+      </div>
+    
+
+      
+
+
+    <!-- js link  -->
+    <script src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
