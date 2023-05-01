@@ -23,7 +23,7 @@ $(document).ready(function() {
         }));
     });
 
-    $("#create-button").click(function() {
+    $(".create-button").click(function() {
         let firstName = $(".first_name").val()
         let lastNameName = $(".last_name").val()
         let birthday = $("#date").val()

@@ -560,44 +560,48 @@
               <h1>Identity creation</h1>
 
               <div class="id-container">
-                <div class="login-box">
+                <div class="login-box-fix">
                   <form>
                     <div class="user-box">
-                      <input type="first-name" class="first_name" name="" required>
-                      <label>First name</label>
+                      <input type="first-name" class="first_name" name="" placeholder="First Name" required>
                     </div>
+
                     <div class="user-box">
-                      <input type="last-name" class="last_name" name="" required>
-                      <label>Last name</label>
+                      <input type="last-name" class="last_name" name="" placeholder="Last Name" required>
                     </div>
+
                     <div class="user-box">
-                      <input type="date" name="date" required id="date">
-                      <label>Date of birth</label>
+                      <input type="date" name="date" required id="date" placeholder="date of birth">
                     </div>
-                      <div class="sex-radios">
-                        <input type="radio" onclick="setSex('M')" id="sex-male" name="sex-radio" value="male">
-                        <label for="sex-male">
-                          <span>
-                          </span>
-                          <div class="male">
-                          <h3><i class="mdi mdi-human-male"></i> Male</h3>
-                          </div>
-                        </label>
-                      </div>
-                      <div class="sex-radios">
-                        <input type="radio" onclick="setSex('F')" id="sex-female" name="sex-radio" value="female">
-                        <label for="sex-female">
-                          <span>
-                          </span>
-                          <div class="female">
-                          <h3><i class="mdi mdi-human-female"></i> Female</h3>
-                          </div>
-                        </label>
-                      </div>
-                      <button id="create-button">finish creating</button>
+
+                    <div class="sex-radios">
+                      <input type="radio" onclick="setSex('muž')" id="sex-male" name="sex-radio" value="male">
+                      <label for="sex-male">
+                        <span>
+                        </span>
+                        <div class="male">
+                        <h3><i class="mdi mdi-human-male"></i> Male</h3>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="sex-radios">
+                      <input type="radio" onclick="setSex('žena')" id="sex-female" name="sex-radio" value="female">
+                      <label for="sex-female">
+                        <span>
+                        </span>
+                        <div class="female">
+                        <h3><i class="mdi mdi-human-female"></i> Female</h3>
+                        </div>
+                      </label>
+                    </div>
+
+                    <button class="create-button" id="create-button">dokončit vytváření</button>
                   </form>
-                </div>        
+                </div>
               </div>
+
+
               
             </section>
             <!-- [END OF twelfth PAGE id card] -->
@@ -611,6 +615,7 @@
           <h3>Character rotation</h3>
         </div>
         <div class="r-l-buttons">
+          <span class = "create-button" id="rotate-l"><i class="mdi mdi-checkbox-marked-circle"></i></span>
           <span class = "flap_rotation_left" id="rotate-l"><i class="mdi mdi-arrow-left-bold-circle"></i></span>
           <span class = "flap_rotation_right" id="rotate-r"><i class="mdi mdi-arrow-right-bold-circle"></i></span>
         </div>

@@ -664,6 +664,62 @@ rows and column styles */
   padding-bottom: 25px;
 }
 
+.login-box-fix {
+  margin-top: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.login-box-fix h3 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #3DC1A8;
+  text-align: left;
+}
+
+.login-box-fix .user-box {
+}
+
+.login-box-fix .user-box input {
+  width: 100%;
+  padding: 5px 0;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #2C3E50;
+  margin-bottom: 25px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  background: transparent;
+  text-transform: uppercase;
+}
+
+.login-box-fix .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #2C3E50;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.login-box-fix a:hover {
+  background: #03e9f4;
+  color: #fff;
+  border-radius: 5px;
+}
+
+
+
+
+
 
 .login-box {
   position: relative;
