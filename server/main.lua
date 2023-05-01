@@ -108,7 +108,6 @@ AddEventHandler('flap_character_creation:saveSkin', function(skin)
 				['@identifier'] = xPlayer.identifier
 			})
 
-	ESX.SavePlayer(xPlayer, cb)
 end)
 
 RegisterServerEvent('flap_character_creation:saveIdentity')
